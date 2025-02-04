@@ -1,2 +1,2 @@
 # Dyslexhelp
-Our sec 4 computing coursework project
+Co-created with See Kaishen Bryan & Luis Santino Maramag Ugay
