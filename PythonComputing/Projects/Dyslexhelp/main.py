@@ -5,7 +5,7 @@ import numpy as np
 import os
 import traceback
 import uuid
-from google.cloud import vision
+import easyocr  # Import EasyOCR
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
@@ -89,6 +89,9 @@ for filename, content in templates.items():
         with open(f'templates/{filename}', 'w') as f:
             f.write(content)
 
+# Initialize EasyOCR reader 
+reader = easyocr.Reader(['en']) 
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -136,24 +139,15 @@ def upload():
         opened_image_path = f"static/{image_base_name}_opened.jpg"
         cv2.imwrite(opened_image_path, opening)
 
-
-        # Initialize the Vision API client
-        client = vision.ImageAnnotatorClient()
-
-        # Convert the preprocessed image to bytes (required for the API)
-        _, encoded_image = cv2.imencode('.png', opening)  # Encode the 'opening' image
-        content = encoded_image.tobytes()
-
-        image = vision.Image(content=content)
-
-        # Perform OCR using the Vision API
-        response = client.text_detection(image=image)
-        texts = response.text_annotations
+        # EasyOCR
+        result = reader.readtext(opening)  # Use the preprocessed image ('opening')
 
         extracted_text = ""
-        if texts:
-            # The first text annotation is the entire detected text
-            extracted_text = texts[0].description
+        for (bbox, text, prob) in result:
+            extracted_text += text + " "  # Concatenate detected text with spaces
+
+        extracted_text = extracted_text.strip()  # Remove leading/trailing spaces
+
 
         # Error Checking (improved)
         errors = []
@@ -168,6 +162,7 @@ def upload():
         traceback.print_exc()
         error_message = f"An error occurred: {e}"
         return render_template('result.html', phrase=generated_phrase, extracted=error_message, errors=[(0, "Error")])
+
 
 if __name__ == '__main__':
     app.run(debug=True)
