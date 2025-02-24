@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="jpg" href="assets/home_image.jpg">
+    <title>Generated Phrase</title>
+    <style>
+        body{
+                background-color:white;
+        }
+    
+        .grid-container{
+                display: grid;
+                grid-template-columns: auto auto auto auto auto;
+                grid-template-rows: 100px 500px ;
+                gap: 10px;
+        
+        }
+        
+        .grid-container > div{
+                background-color: rgba(220,238,244,255);   
+                font-family:Arial, Helvetica, sans-serif ;
+                padding: 10px;
+                font-size: 32px;
+                border-radius: 15px;
+        }
+    
+        .header{
+                grid-column-start: 1;
+                grid-column-end: 6;
+        }
+        
+        .body{
+                text-align: center;
+                grid-row-start:2;
+                grid-column-start:2;
+                grid-column-end:5;
+        }
+        
+        #LetsGo{
+                height:50px;
+                width:100px;
+                border-radius: 10px;
+                font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="body">
+            <h1>{{phrase}}</h1> <!-- This will display the randomly generated phrase -->
+            <form action="/upload" method="post" enctype="multipart/form-data" >
+                <input type="file" name="file" accept="image/*" required style="font-size: 30px; text-align: center;">
+                <br>
+                <button type="submit" style="background-color: dodgerblue; color: azure; font-size:40px; margin-top: 10px;">Upload Image</button>
+            </form>
+        </div>
+    </div>
+
+    
+</body>
+</html> 

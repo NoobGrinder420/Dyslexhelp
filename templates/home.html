@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="jpg" href="assets/home_image.jpg">
+        <title>Dyslexhelp</title>
+        <style>
+            body{
+                    background-color:white;
+            }
+        
+            .grid-container{
+                    display: grid;
+                    grid-template-columns: auto auto auto auto auto;
+                    grid-template-rows: 100px 500px ;
+                    gap: 10px;
+            
+            }
+            
+            .grid-container > div{
+                    background-color: rgba(220,238,244,255);   
+                    font-family:Arial, Helvetica, sans-serif ;
+                    padding: 10px;
+                    font-size: 32px;
+                    border-radius: 15px;
+            }
+        
+            .header{
+                    grid-column-start: 1;
+                    grid-column-end: 6;
+            }
+            
+            .body{
+                    text-align: center;
+                    grid-row-start:2;
+                    grid-column-start:2;
+                    grid-column-end:5;
+            }
+            
+            #LetsGo{
+                    height:50px;
+                    width:100px;
+                    border-radius: 10px;
+                    font-size: 20px;
+            }
+        </style>
+</head>
+<body>
+        <div class="grid-container">
+            <div class="body">
+                    <img type="jpg" src="assets/home_image.jpg" style="height:200px;width:250px; margin-top: 5px; margin-bottom: 5px;">
+                    <h1 style="margin-top: 5px; margin-bottom:5px; font-size:50px">Instructions:</h1>
+                    <p style="margin-top: 20px; margin-bottom:20px;">Copy down the generated phrase onto a piece of paper. <br> When done, take a picture of the phrase you have written and upload it.</p>
+                    <a href='/generate'>
+                            <button id="LetsGo">Start!</button>
+                    </a>
+            </div>
+        </div>
+        
+</body>
+</html>

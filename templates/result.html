@@ -1,0 +1,90 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="jpg" href="assets/home_image.jpg">
+        <title>Result</title>
+        <style>
+            body{
+                    background-color:white;
+            }
+        
+            .grid-container{
+                    display: grid;
+                    grid-template-columns: auto auto auto auto auto;
+                    grid-template-rows: 100px auto ;
+                    gap: 10px;
+            
+            }
+            
+            .grid-container > div{
+                    background-color: rgba(220,238,244,255);   
+                    font-family:Arial, Helvetica, sans-serif ;
+                    padding: 10px;
+                    font-size: 32px;
+                    border-radius: 15px;
+            }
+        
+            .header{
+                    grid-column-start: 1;
+                    grid-column-end: 6;
+                    grid-column-start:2;
+                    grid-column-end:5;
+                    
+            }
+            
+            .body{
+                    text-align: center;
+                    grid-row-start:2;
+                    grid-column-start:2;
+                    grid-column-end:5;
+            }
+            
+            #LetsGo{
+                    height:50px;
+                    width:100px;
+                    border-radius: 10px;
+                    font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="header">
+                <h1 style="margin-top: 2px; font-size: 40px; text-align: center;">Generated Phrase: {{ phrase }}</h1>
+            </div>
+            <div class="body">
+                <h2 style="margin-top: 5px;margin-bottom: 5px;">Extracted Text: {{ extracted }}</h2>
+
+                {% if errors %}
+                <h3 style="margin-top: 5px;margin-bottom: 5px;">Errors:</h3>
+                <ul style="font-size: 20px;margin-top: 5px;margin-bottom: 5px;">
+                    {% for i, char in errors %}
+                        <li>Error at position {{ i }}: Expected '{{ char }}', Got '{{ extracted[i] if i < extracted|length else ' ' }}'</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No errors found!</p>
+                {% endif %}
+
+                {% if image_path %}
+                <div>
+                    <h3>Uploaded and Processed Image:</h3>
+                    <img src="{{ url_for('static', filename=image_path.split('static/')[1]) }}" alt="Processed Image">
+                </div>
+                {% endif %}
+        
+                <a href="/generate">
+                    <button style="background-color: dodgerblue; color: azure; font-size:40px; margin-top: 10px;">
+                        Try Again
+                    </button>
+                </a>
+            </div>
+        </div>
+        
+        
+    </body>
+    </html>
+    
