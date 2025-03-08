@@ -47,21 +47,15 @@ def upload():
         image_base_name = f"processed_image_{unique_id}"
 
         # 1. Save the original uploaded image for debugging
-        original_image_path = f"static/{image_base_name}_uploaded.jpg"
+        original_image_path = f"static/original_{image_base_name}.jpg"
         cv2.imwrite(original_image_path, img)
 
         # Image Preprocessing (more robust)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        gray_image_path = f"static/{image_base_name}_gray.jpg"
-        cv2.imwrite(gray_image_path, gray)
 
         blurred = cv2.GaussianBlur(gray, (3, 3), 0)
-        blurred_image_path = f"static/{image_base_name}_blurred.jpg"
-        cv2.imwrite(blurred_image_path, blurred)
 
         thresh = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 9, 2)
-        thresh_image_path = f"static/{image_base_name}_thresh.jpg"
-        cv2.imwrite(thresh_image_path, thresh)
 
         kernel = np.ones((2, 2), np.uint8)
         opening = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=1)

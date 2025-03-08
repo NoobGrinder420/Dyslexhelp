@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="jpg" href="assets/home_image.jpg">
+        <link rel="icon" type="jpg" href="static/assets/DyslexFavicon.jpg">
         <title>Result</title>
         <style>
             body{
@@ -67,13 +67,6 @@
                 </ul>
                 {% else %}
                 <p>No errors found!</p>
-                {% endif %}
-
-                {% if image_path %}
-                <div>
-                    <h3>Uploaded and Processed Image:</h3>
-                    <img src="{{ url_for('static', filename=image_path.split('static/')[1]) }}" alt="Processed Image">
-                </div>
                 {% endif %}
         
                 <a href="/generate">
