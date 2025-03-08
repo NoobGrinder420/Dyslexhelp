@@ -7,6 +7,6 @@ ___
 
 change directory to dyslexhelp and run code using:
 ```bash
-./build.sh
+./build/build.sh
 ```
 
