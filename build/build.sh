@@ -11,7 +11,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 # Set environment variable AND run the app in the SAME shell session
-export GOOGLE_APPLICATION_CREDENTIALS="DyslexHelpAPI.json" 
+export GOOGLE_APPLICATION_CREDENTIALS="" #Change to your google cloud API json file
 
 python3 ../app/main.py
 
